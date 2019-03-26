@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FlistService } from '../flist.service';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -12,7 +13,8 @@ export class HeaderComponent implements OnInit {
   session = {login : null, token : null}
   token : String = "";
 
-  constructor(private _flistService: FlistService) { 
+  constructor(private _flistService: FlistService, private _router: Router) { 
+    
   }
 
   ngOnInit() {
@@ -42,6 +44,7 @@ export class HeaderComponent implements OnInit {
     this._flistService.delete_cookie("TOKEN");
     this.session.login = null;
     this.session.token = null;
+    if(this._router.url.includes("edit")) this._router.navigate(['/']);
   }
 
   check_token(token : string): void{

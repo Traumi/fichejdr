@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { CanActivate } from '@angular/router/src/utils/preactivation';
 import { FlistService } from './flist.service';
 
@@ -10,10 +11,15 @@ import { FlistService } from './flist.service';
 export class EditGuard implements CanActivate {
   path: ActivatedRouteSnapshot[];  route: ActivatedRouteSnapshot;
 
-  constructor(private flistService: FlistService) {}
+  constructor(private _flistService: FlistService) {}
 
-  canActivate() {
-    return true;
-    //return this.flistService.getCookie('token') != "";
+  canActivate(): Observable<boolean> {
+    let token = this._flistService.getCookie('TOKEN');
+    return this._flistService.check_token(token).pipe(
+      map((test: any) => {
+        console.log(test)
+        return test.token != null;
+      })
+    )
   }
 }
