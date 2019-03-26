@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FlistService } from '../flist.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+declare var $:any;
 
 @Component({
   selector: 'app-header',
@@ -11,14 +12,13 @@ export class HeaderComponent implements OnInit {
 
   form = {login : "", pw : ""}
   session = {login : null, token : null}
-  token : String = "";
+  loginForm : boolean = true;
 
   constructor(private _flistService: FlistService, private _router: Router) { 
     
   }
 
   ngOnInit() {
-    this.token = this.getCookie("token");
     this.check_token(this.getCookie("TOKEN"));
   }
 
@@ -30,12 +30,28 @@ export class HeaderComponent implements OnInit {
     return this._flistService.getCookie(cname);
   }
 
+  displayLoginForm(): void {
+    $('.ui.modal').modal('show')
+  }
+
+  closeLoginForm(): void {
+    $('.ui.modal').modal('hide')
+  }
+
+  initSession() : boolean{
+    if(this.session.token){
+      return true;
+    }
+    return false;
+  }
+
   login(): void{
     this._flistService.login(this.form.login, this.form.pw).subscribe(res => {
       if(res.token){
         this.setCookie("TOKEN",res.token,5);
         this.session.login = res.login;
         this.session.token = res.token;
+        $('.ui.modal').modal('hide');
       }
     });
   }

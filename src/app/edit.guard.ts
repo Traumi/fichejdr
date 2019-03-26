@@ -17,7 +17,6 @@ export class EditGuard implements CanActivate {
     let token = this._flistService.getCookie('TOKEN');
     return this._flistService.check_token(token).pipe(
       map((test: any) => {
-        console.log(test)
         return test.token != null;
       })
     )

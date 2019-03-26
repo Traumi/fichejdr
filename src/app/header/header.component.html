@@ -1,19 +1,17 @@
 <header>
   <nav class="ui top fixed inverted menu">
     <a class="item" routerLink="/">Accueil</a>
-    <a class="item" onclick="$('.ui.modal').modal('show')" *ngIf="!session.token">Login</a>
-    <div class="item" *ngIf="session.token">{{session.login}}</div>
-    <div class="right menu">
-      <a class="item" (click)="logout()" *ngIf="session.token">
-        Logout
-      </a>
+    <a class="item" (click)="displayLoginForm()" *ngIf="!session.token">Se connecter</a>
+    <div class="right menu" *ngIf="session.token">
+      <div class="item">{{session.login}}</div>
+      <a class="item" (click)="logout()">Déconnexion</a>
     </div>
   </nav>
   <div style="height:50px;"></div>
 </header>
 
 <div class="ui modal">
-  <div class="header">Connexion/Inscription <span onclick="$('.ui.modal').modal('hide')" style="cursor:pointer;float:right;">&times;</span></div>
+  <div class="header">Connexion/Inscription <span (click)="closeLoginForm()" style="cursor:pointer;float:right;">&times;</span></div>
   <div class="ui centered grid" style="margin-top:20px;margin-bottom:20px;">
     <div class="fourteen wide column">
       <div class="ui placeholder segment">
