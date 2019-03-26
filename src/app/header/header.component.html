@@ -3,6 +3,11 @@
     <a class="item" routerLink="/">Accueil</a>
     <a class="item" onclick="$('.ui.modal').modal('show')" *ngIf="!session.token">Login</a>
     <div class="item" *ngIf="session.token">{{session.login}}</div>
+    <div class="right menu">
+      <a class="item" (click)="logout()" *ngIf="session.token">
+        Logout
+      </a>
+    </div>
   </nav>
   <div style="height:50px;"></div>
 </header>

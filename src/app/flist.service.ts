@@ -48,6 +48,10 @@ export class FlistService {
     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
   }
 
+  delete_cookie( name ): void {
+    document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+  }
+
   getCookie(cname): string {
     var name = cname + "=";
     var decodedCookie = decodeURIComponent(document.cookie);

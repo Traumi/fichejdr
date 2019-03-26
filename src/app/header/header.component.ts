@@ -38,6 +38,12 @@ export class HeaderComponent implements OnInit {
     });
   }
 
+  logout(): void{
+    this._flistService.delete_cookie("TOKEN");
+    this.session.login = null;
+    this.session.token = null;
+  }
+
   check_token(token : string): void{
     this._flistService.check_token(token).subscribe(res => {
       if(res.token){
