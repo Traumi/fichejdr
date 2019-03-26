@@ -1,0 +1,63 @@
+<span *ngIf="!viewonly">
+  <h5>Compétences</h5>
+  <div class="ui segment">
+    <div *ngFor="let o of competences">
+      <div class="ui form">
+        <div class="fields">
+          <div class="three wide field">
+            <input placeholder="Nom" type="text" [(ngModel)]="o.nom"/>
+          </div>
+          <div class="two wide field">
+            <input placeholder="Coût" type="text" [(ngModel)]="o.cout"/>
+          </div>
+          <div class="ten wide field">
+            <textarea rows="1" placeholder="Effet" type="text" [(ngModel)]="o.effet"></textarea>
+          </div>
+          <div class="field">
+            <div class="ui labeled input">
+              <button class="ui red button" (click)="removeComp(o)">&times;</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="ui form">
+        <div class="fields">
+          <div class="three wide field">
+            <input placeholder="Nom" type="text" [(ngModel)]="newcomp.nom"/>
+          </div>
+          <div class="two wide field">
+            <input placeholder="Coût" type="text" [(ngModel)]="newcomp.cout"/>
+          </div>
+          <div class="ten wide field">
+            <textarea rows="1" placeholder="Effet" type="text" [(ngModel)]="newcomp.effet"></textarea>
+          </div>
+          <div class="field">
+            <div class="ui labeled input">
+              <button class="ui red button" (click)="addComp()">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</span>
+
+<span *ngIf="viewonly">
+  <h5>Compétences</h5>
+  <table class="ui celled table">
+    <thead>
+      <tr><th>Nom</th>
+      <th>Coût</th>
+      <th>Effet</th>
+    </tr></thead>
+    <tbody>
+      <tr *ngFor="let o of competences">
+        <td data-label="Nom">{{o.nom}}</td>
+        <td data-label="Coût">{{o.cout}}</td>
+        <td data-label="Effet">{{o.effet}}</td>
+      </tr>
+    </tbody>
+  </table>
+</span>

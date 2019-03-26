@@ -1,0 +1,5 @@
+<ul>
+  <li *ngFor="let l of list"><a [routerLink]="['/detail', l.id]">{{l.prenom}} {{l.nom}}</a></li>
+  <li><a (click)="addPerso()">+ Ajouter</a></li>
+</ul>
+

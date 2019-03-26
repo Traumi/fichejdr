@@ -1,0 +1,43 @@
+<!--{{perso | json}}-->
+
+<div *ngIf="perso" class="ui centered grid">
+  <section class="fourteen wide column">
+    
+    <div class="ui inverted segments">
+      <div class="ui center aligned segment">
+          <h3>Fiche de {{perso.prenom}} {{perso.nom}}</h3>
+          <div class="ui center aligned segment">
+            <!--Général-->
+            <app-general [viewonly]="false" [perso]="perso"></app-general>
+          </div>
+          <div class="ui center aligned segment">
+            <h5>Attributs</h5>
+            <div class="ui horizontal segments">
+              <div class="ui segment">
+                <!--Statistiques-->
+                <app-stats [viewonly]="false" [bars]="perso.bars"></app-stats>
+              </div>
+              <div class="ui segment">
+                <!--Caractéristiques-->
+                <app-carac [viewonly]="false" [stats]="perso.stats"></app-carac>
+              </div>
+            </div>
+          </div>
+          <div class="ui center aligned segment">
+            <!--Equipement-->
+            <app-stuff [viewonly]="false" [stuff]="perso.stuff"></app-stuff>
+          </div>
+          <div class="ui center aligned segment">
+            <!--Compétences-->
+            <app-comp [viewonly]="false" [competences]="perso.competences"></app-comp>
+          </div>
+          <div class="ui buttons">
+              <button (click)="updatePerso()" class="ui green button">Mettre à jour</button>
+            <div class="or" data-text="ou"></div>
+            <button (click)="fichePerso()" class="ui red button">Retour</button>
+          </div>
+      </div>
+    </div>
+  </section>
+</div>
+

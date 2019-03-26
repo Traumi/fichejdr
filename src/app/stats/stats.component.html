@@ -1,0 +1,51 @@
+<span *ngIf="!viewonly">
+  <p>Statistiques</p>
+  <div class="ui segment">
+    <div *ngFor="let o of bars">
+      <div class="ui form">
+        <div class="fields">
+          <div class="five wide field">
+            <input type="text" placeholder="Nom" [(ngModel)]="o.nom"/>
+          </div>
+          <div class="three wide field">
+            <input type="number" placeholder="Nombre" [(ngModel)]="o.val"/>
+          </div>
+          <div class="field">
+            <div class="ui labeled input">
+              <button class="ui red button" (click)="removeBar(o)">&times;</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="ui form">
+        <div class="fields">
+          <div class="five wide field">
+            <input type="text" placeholder="Nom" [(ngModel)]="newbar.nom"/>
+          </div>
+          <div class="three wide field">
+            <input type="number" placeholder="Nombre" [(ngModel)]="newbar.val"/>
+          </div>
+          <div class="field">
+            <div class="ui labeled input">
+              <button class="ui red button" (click)="addBar()">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</span>
+
+<span *ngIf="viewonly">
+  <p>Statistiques</p>
+  <table class="ui celled table">
+    <tbody>
+      <tr *ngFor="let o of bars">
+        <td data-label="Nom">{{o.nom}}</td>
+        <td data-label="Valeur">{{o.val}}</td>
+      </tr>
+    </tbody>
+  </table>
+</span>

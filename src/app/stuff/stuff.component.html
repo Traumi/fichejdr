@@ -1,0 +1,63 @@
+<span *ngIf="!viewonly">
+  <h5>Équipement</h5>
+  <div class="ui segment">
+    <div *ngFor="let o of stuff">
+      <div class="ui form">
+        <div class="fields">
+          <div class="three wide field">
+            <input placeholder="Nom" type="text" [(ngModel)]="o.nom"/>
+          </div>
+          <div class="ten wide field">
+            <textarea rows="1" placeholder="Effet" type="text" [(ngModel)]="o.effet"></textarea>
+          </div>
+          <div class="two wide field">
+            <input placeholder="Nombre" type="number" [(ngModel)]="o.nombre"/>
+          </div>
+          <div class="field">
+            <div class="ui labeled input">
+              <button class="ui red button" (click)="removeItem(o)">&times;</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="ui form">
+        <div class="fields">
+          <div class="three wide field">
+            <input placeholder="Nom" type="text" [(ngModel)]="newitem.nom"/>
+          </div>
+          <div class="ten wide field">
+            <textarea rows="1" placeholder="Effet" type="text" [(ngModel)]="newitem.effet"></textarea>
+          </div>
+          <div class="two wide field">
+            <input placeholder="Nombre" type="number" [(ngModel)]="newitem.nombre"/>
+          </div>
+          <div class="field">
+            <div class="ui labeled input">
+              <button class="ui red button" (click)="addItem()">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</span>
+
+<span *ngIf="viewonly">
+  <h5>Équipement</h5>
+  <table class="ui celled table">
+    <thead>
+      <tr><th>Nom</th>
+      <th>Effet</th>
+      <th>Nombre</th>
+    </tr></thead>
+    <tbody>
+      <tr *ngFor="let o of stuff">
+        <td data-label="Nom">{{o.nom}}</td>
+        <td data-label="Effet">{{o.effet}}</td>
+        <td data-label="Nombre">{{o.nombre}}</td>
+      </tr>
+    </tbody>
+  </table>
+</span>
