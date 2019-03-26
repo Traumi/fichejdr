@@ -14,8 +14,8 @@ export class FdetailComponent implements OnInit {
   list : any;
 
   constructor(private _activatedRoute: ActivatedRoute, private _router: Router, private _flistService : FlistService) {
-      this.perso = new Fiche();
-   }
+    this.perso = new Fiche();
+  }
 
   ngOnInit() {
     this.getFiche();
@@ -25,7 +25,6 @@ export class FdetailComponent implements OnInit {
     const id = +this._activatedRoute.snapshot.paramMap.get('id');
     this._flistService.getFiche(id)
       .subscribe(res => {
-
         this.perso.id = res.id;
         this.perso.prenom = res.prenom;
         this.perso.nom = res.nom;
@@ -37,18 +36,14 @@ export class FdetailComponent implements OnInit {
         this.perso.stuff = res.stuff;
         this.perso.competences = res.competences;
         this.getAllFiches();
-        //console.log(this.perso.stats)
       });
   }
 
   getAllFiches() : void{
     this._flistService.getAllFiches().subscribe(res => {
-      //this.list = res;
       this.list = [];
       for(let i = 0 ; i < res.length ; ++i){
         if(res[i].id == this.perso.id){
-          //console.log(res[i]);
-          //this.list[0] = res[i];
           if((i-2) >= 0) this.list[0] = res[i-2];
           else this.list[0] = null;
           if(i-1 >= 0) this.list[1] = res[i-1];
@@ -58,17 +53,21 @@ export class FdetailComponent implements OnInit {
           else this.list[3] = null;
           if(i+2 < res.length) this.list[4] = res[i+2];
           else this.list[4] = null;
-
-          console.log(this.list);
         }
       }
     });
   }
 
   goto(num : number) : void{
-    this._flistService.getFiche(num)
-      .subscribe(res => {
-
+    this._flistService.getAllFiches().subscribe(res => {
+      if(num == -10){
+        num = res.length - 1;
+      }else if(num < 0){
+        num = 0;
+      }else if(num >= res.length){
+        num = res.length - 1;
+      }
+      this._flistService.getFiche(num).subscribe(res => {
         this.perso.id = res.id;
         this.perso.prenom = res.prenom;
         this.perso.nom = res.nom;
@@ -80,11 +79,10 @@ export class FdetailComponent implements OnInit {
         this.perso.stuff = res.stuff;
         this.perso.competences = res.competences;
         this.getAllFiches();
-
       });
-    this._router.navigate(['/detail/'+num]);
+      this._router.navigate(['/detail/'+num]);
+    });
   }
-
 }
 /*import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';*/
