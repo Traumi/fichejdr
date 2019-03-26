@@ -11,14 +11,15 @@ import { Fiche } from '../fiche';
 export class FdetailComponent implements OnInit {
 
   perso : Fiche;
+  list : any;
 
   constructor(private _route: ActivatedRoute, private _flistService : FlistService) {
       this.perso = new Fiche();
    }
 
   ngOnInit() {
-    //this.perso = new Fiche();
     this.getFiche();
+    this.getAllFiches();
   }
 
   getFiche(): void {
@@ -39,6 +40,12 @@ export class FdetailComponent implements OnInit {
         
         //console.log(this.perso.stats)
       });
+  }
+
+  getAllFiches() : void{
+    this._flistService.getAllFiches().subscribe(res => {
+      this.list = res;
+    });
   }
 
 }
