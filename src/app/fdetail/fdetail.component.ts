@@ -12,13 +12,25 @@ export class FdetailComponent implements OnInit {
 
   perso : Fiche;
   list : any;
+  isAdmin = false;
 
   constructor(private _activatedRoute: ActivatedRoute, private _router: Router, private _flistService : FlistService) {
     this.perso = new Fiche();
   }
 
   ngOnInit() {
+    const id = +this._activatedRoute.snapshot.paramMap.get('id');
+    
+    this.checkAdmin(id);
     this.getFiche();
+  }
+
+  checkAdmin(id: number) : void{
+    const token = this._flistService.getCookie('TOKEN');
+    this._flistService.check_access(token, id).subscribe(res => {
+      if(res.token) this.isAdmin = true;
+      else this.isAdmin = false;
+    });
   }
 
   getFiche(): void {
@@ -74,6 +86,7 @@ export class FdetailComponent implements OnInit {
         this.getAllFiches();
       });
       this._router.navigate(['/detail/'+num]);
+      this.checkAdmin(num);
     });
   }
 

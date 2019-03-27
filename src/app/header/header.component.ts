@@ -10,7 +10,7 @@ declare var $:any;
 })
 export class HeaderComponent implements OnInit {
 
-  form = {login : "", pw : ""}
+  form = {login : "", pw : "", Slogin : "", Spw : "", Spw2 : ""}
   session = {login : null, token : null}
   subForm : boolean = false;
 
@@ -47,6 +47,19 @@ export class HeaderComponent implements OnInit {
 
   login(): void{
     this._flistService.login(this.form.login, this.form.pw).subscribe(res => {
+      if(res.token){
+        this.setCookie("TOKEN",res.token,5);
+        this.session.login = res.login;
+        this.session.token = res.token;
+        $('.ui.modal').modal('hide');
+      }
+    });
+  }
+
+  subscribe(): void{
+    if(this.form.Spw.length < 4) return;
+    if(this.form.Spw != this.form.Spw2) return;
+    this._flistService.subscribe(this.form.Slogin, this.form.Spw).subscribe(res => {
       if(res.token){
         this.setCookie("TOKEN",res.token,5);
         this.session.login = res.login;

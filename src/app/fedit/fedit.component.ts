@@ -18,7 +18,16 @@ export class FeditComponent implements OnInit {
    }
 
   ngOnInit() {
+    const id = +this._route.snapshot.paramMap.get('id');
+    this.checkAdmin(id);
     this.getFiche();
+  }
+
+  checkAdmin(id: number) : void{
+    const token = this._flistService.getCookie('TOKEN');
+    this._flistService.check_access(token, id).subscribe(res => {
+      if(!res.token) this._router.navigate(['/detail',id]);
+    });
   }
 
   getFiche(): void {
@@ -40,7 +49,7 @@ export class FeditComponent implements OnInit {
   }
 
   getAllFiches() : void{
-    this._flistService.getAllFiches().subscribe(res => {
+    this._flistService.getEditableFiches().subscribe(res => {
       this.list = [];
       for(let i = 0 ; i < res.length ; ++i){
         if(res[i].id == this.perso.id){
@@ -74,6 +83,7 @@ export class FeditComponent implements OnInit {
         this.getAllFiches();
       });
       this._router.navigate(['/edit',num]);
+      this.checkAdmin(num);
     });
   }
 

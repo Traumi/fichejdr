@@ -42,7 +42,7 @@
             <!--Compétences-->
             <app-comp [viewonly]="true" [competences]="perso.competences"></app-comp>
           </div>
-          <button [routerLink]="['/edit', perso.id]" class="ui primary button">Edit</button>
+          <button [routerLink]="['/edit', perso.id]" class="ui primary button" *ngIf="isAdmin">Edit</button>
       </div>
     </div>
   </section>

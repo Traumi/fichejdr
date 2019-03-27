@@ -16,6 +16,11 @@ export class FlistService {
     return this.http.get<any>(url);
   }
 
+  getEditableFiches() : Observable<any>{
+    let url = 'http://localhost/jdr/editable_fiches.php?token='+this.getCookie("TOKEN");
+    return this.http.get<any>(url);
+  }
+
   getFiche(id : number) : Observable<any>{
     let url = 'http://localhost/jdr/fiche.php?id='+id;
     return this.http.get<any>(url);
@@ -28,7 +33,7 @@ export class FlistService {
 
   updateFiche(fiche: object) : Observable<any>{
     let url = 'http://localhost/jdr/update_fiche.php';
-    return this.http.post<any>(url, fiche);
+    return this.http.put<any>(url, fiche);
   }
 
   login(login: string, pw: string) : Observable<any>{
@@ -36,8 +41,18 @@ export class FlistService {
     return this.http.get<any>(url);
   }
 
+  subscribe(login: string, pw: string) : Observable<any>{
+    let url = 'http://localhost/jdr/subscribe.php?login='+login+'&pw='+pw;
+    return this.http.get<any>(url);
+  }
+
   check_token(token: string) : Observable<any>{
     let url = 'http://localhost/jdr/check_token.php?token='+token;
+    return this.http.get<any>(url);
+  }
+
+  check_access(token: string, id: number) : Observable<any>{
+    let url = 'http://localhost/jdr/check_access.php?token='+token+'&id='+id;
     return this.http.get<any>(url);
   }
 
