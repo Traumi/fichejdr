@@ -8,8 +8,12 @@ import { Component, OnInit, Input } from '@angular/core';
 export class StuffComponent implements OnInit {
 
   @Input() stuff = [];
+  @Input() armures = [];
+  @Input() objets = [];
   @Input() viewonly : boolean;
   newitem = {nom : null, effet : null, nombre : null};
+  newarmure = {nom : null, effet : null, nombre : null};
+  newobj = {nom : null, effet : null, nombre : null};
 
   constructor() { }
 
@@ -22,6 +26,18 @@ export class StuffComponent implements OnInit {
     this.newitem.effet = null;
     this.newitem.nombre = null;
   }
+  addArmure() : void{
+    this.armures.push({nom : this.newarmure.nom, effet : this.newarmure.effet, nombre : this.newarmure.nombre});
+    this.newarmure.nom = null;
+    this.newarmure.effet = null;
+    this.newarmure.nombre = null;
+  }
+  addObjet() : void{
+    this.objets.push({nom : this.newobj.nom, effet : this.newobj.effet, nombre : this.newobj.nombre});
+    this.newobj.nom = null;
+    this.newobj.effet = null;
+    this.newobj.nombre = null;
+  }
 
   removeItem(o : object) : void{
     let index = null;
@@ -32,6 +48,26 @@ export class StuffComponent implements OnInit {
       }
     }
     if(index != null) this.stuff.splice(index, 1);
+  }
+  removeArmure(o : object) : void{
+    let index = null;
+    for(let i = 0 ; i  < this.armures.length ; ++i){
+      if(this.armures[i] == o){
+        index = i; 
+        break;
+      }
+    }
+    if(index != null) this.armures.splice(index, 1);
+  }
+  removeObjet(o : object) : void{
+    let index = null;
+    for(let i = 0 ; i  < this.objets.length ; ++i){
+      if(this.objets[i] == o){
+        index = i; 
+        break;
+      }
+    }
+    if(index != null) this.objets.splice(index, 1);
   }
 
 }

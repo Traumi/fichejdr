@@ -1,6 +1,7 @@
 <span *ngIf="!viewonly">
   <h5>Équipement</h5>
   <div class="ui segment">
+    <h5>Armes</h5>
     <div *ngFor="let o of stuff">
       <div class="ui form">
         <div class="fields">
@@ -42,18 +43,119 @@
       </div>
     </div>
   </div>
+
+  <div class="ui segment">
+    <h5>Armures</h5>
+    <div *ngFor="let o of armures">
+      <div class="ui form">
+        <div class="fields">
+          <div class="three wide field">
+            <input placeholder="Nom" type="text" [(ngModel)]="o.nom"/>
+          </div>
+          <div class="ten wide field">
+            <textarea rows="1" placeholder="Effet" type="text" [(ngModel)]="o.effet"></textarea>
+          </div>
+          <div class="two wide field">
+            <input placeholder="Nombre" type="number" [(ngModel)]="o.nombre"/>
+          </div>
+          <div class="field">
+            <div class="ui labeled input">
+              <button class="ui red button" (click)="removeArmure(o)">&times;</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="ui form">
+        <div class="fields">
+          <div class="three wide field">
+            <input placeholder="Nom" type="text" [(ngModel)]="newarmure.nom"/>
+          </div>
+          <div class="ten wide field">
+            <textarea rows="1" placeholder="Effet" type="text" [(ngModel)]="newarmure.effet"></textarea>
+          </div>
+          <div class="two wide field">
+            <input placeholder="Nombre" type="number" [(ngModel)]="newarmure.nombre"/>
+          </div>
+          <div class="field">
+            <div class="ui labeled input">
+              <button class="ui red button" (click)="addArmure()">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ui segment">
+    <h5>Objets</h5>
+    <div *ngFor="let o of objets">
+      <div class="ui form">
+        <div class="fields">
+          <div class="three wide field">
+            <input placeholder="Nom" type="text" [(ngModel)]="o.nom"/>
+          </div>
+          <div class="ten wide field">
+            <textarea rows="1" placeholder="Effet" type="text" [(ngModel)]="o.effet"></textarea>
+          </div>
+          <div class="two wide field">
+            <input placeholder="Nombre" type="number" [(ngModel)]="o.nombre"/>
+          </div>
+          <div class="field">
+            <div class="ui labeled input">
+              <button class="ui red button" (click)="removeObjet(o)">&times;</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="ui form">
+        <div class="fields">
+          <div class="three wide field">
+            <input placeholder="Nom" type="text" [(ngModel)]="newobj.nom"/>
+          </div>
+          <div class="ten wide field">
+            <textarea rows="1" placeholder="Effet" type="text" [(ngModel)]="newobj.effet"></textarea>
+          </div>
+          <div class="two wide field">
+            <input placeholder="Nombre" type="number" [(ngModel)]="newobj.nombre"/>
+          </div>
+          <div class="field">
+            <div class="ui labeled input">
+              <button class="ui red button" (click)="addObjet()">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </span>
 
 <span *ngIf="viewonly">
-  <h5>Équipement</h5>
-  <table class="ui celled table">
+  <h5>Équipements</h5>
+  <table class="ui celled teal table">
     <thead>
       <tr><th>Nom</th>
       <th>Effet</th>
       <th>Nombre</th>
     </tr></thead>
     <tbody>
+      <tr class="positive"><td class="ui center aligned" colspan="3">Armes</td></tr>
       <tr *ngFor="let o of stuff">
+        <td data-label="Nom">{{o.nom}}</td>
+        <td data-label="Effet">{{o.effet}}</td>
+        <td data-label="Nombre">{{o.nombre}}</td>
+      </tr>
+      <tr class="positive"><td class="ui center aligned" colspan="3">Armures</td></tr>
+      <tr *ngFor="let o of armures">
+        <td data-label="Nom">{{o.nom}}</td>
+        <td data-label="Effet">{{o.effet}}</td>
+        <td data-label="Nombre">{{o.nombre}}</td>
+      </tr>
+      <tr class="positive"><td class="ui center aligned" colspan="3">Objets</td></tr>
+      <tr *ngFor="let o of objets">
         <td data-label="Nom">{{o.nom}}</td>
         <td data-label="Effet">{{o.effet}}</td>
         <td data-label="Nombre">{{o.nombre}}</td>

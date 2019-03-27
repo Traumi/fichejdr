@@ -43,6 +43,8 @@ export class FeditComponent implements OnInit {
         this.perso.stats = res.stats;
         this.perso.bars = res.bars;
         this.perso.stuff = res.stuff;
+        this.perso.armures = res.armures;
+        this.perso.objets = res.objets;
         this.perso.competences = res.competences;
         this.getAllFiches();
       });
@@ -79,6 +81,8 @@ export class FeditComponent implements OnInit {
         this.perso.stats = res.stats;
         this.perso.bars = res.bars;
         this.perso.stuff = res.stuff;
+        this.perso.armures = res.armures;
+        this.perso.objets = res.objets;
         this.perso.competences = res.competences;
         this.getAllFiches();
       });

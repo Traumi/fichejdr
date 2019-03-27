@@ -8,5 +8,7 @@ export class Fiche {
     stats: object[];
     bars: object[];
     stuff: object[];
+    armures: object[];
+    objets: object[];
     competences: object[];
 }

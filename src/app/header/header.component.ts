@@ -77,6 +77,7 @@ export class HeaderComponent implements OnInit {
   }
 
   check_token(token : string): void{
+    if(token == null || token == "") return;
     this._flistService.check_token(token).subscribe(res => {
       if(res.token){
         this.session.login = res.login;
