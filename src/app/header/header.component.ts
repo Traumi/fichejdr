@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FlistService } from '../flist.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { formattedError } from '@angular/compiler';
 declare var $:any;
 
 @Component({
@@ -11,6 +12,7 @@ declare var $:any;
 export class HeaderComponent implements OnInit {
 
   form = {login : "", pw : "", Slogin : "", Spw : "", Spw2 : ""}
+  formError = [];
   session = {login : null, token : null}
   subForm : boolean = false;
 
@@ -46,6 +48,7 @@ export class HeaderComponent implements OnInit {
   }
 
   login(): void{
+    this.formError = [];
     this._flistService.login(this.form.login, this.form.pw).subscribe(res => {
       if(res.token){
         this.setCookie("TOKEN",res.token,5);
@@ -53,18 +56,37 @@ export class HeaderComponent implements OnInit {
         this.session.token = res.token;
         $('.ui.modal').modal('hide');
       }
+      if(res.error){
+        this.formError.push(res.error);
+      }
     });
   }
 
   subscribe(): void{
-    if(this.form.Spw.length < 4) return;
-    if(this.form.Spw != this.form.Spw2) return;
+    this.formError = [];
+    if(this.form.Spw == null || this.form.Spw == null || this.form.Slogin == "" || this.form.Slogin == null){
+      this.formError.push("Vous devez remplir tout les champs");
+    } 
+    if(this.form.Spw.length < 4){
+      this.formError.push("Votre mot de passe doit contenir au moins 4 caractères");
+    }
+    if(this.form.Slogin.length < 3){
+      this.formError.push("Votre pseudo doit contenir au moins 3 caractères");
+    } 
+    if(this.form.Spw != this.form.Spw2){
+      this.formError.push("Les mots de passe entrés sont différents");
+    } 
+    if(this.formError.length > 0) return;
     this._flistService.subscribe(this.form.Slogin, this.form.Spw).subscribe(res => {
+      console.log(res)
       if(res.token){
         this.setCookie("TOKEN",res.token,5);
         this.session.login = res.login;
         this.session.token = res.token;
         $('.ui.modal').modal('hide');
+      }
+      if(res.error){
+        this.formError.push(res.error);
       }
     });
   }

@@ -14,6 +14,12 @@
   <div class="header">Connexion/Inscription <span (click)="closeLoginForm()" style="cursor:pointer;float:right;">&times;</span></div>
   <div class="ui centered grid" style="margin-top:20px;margin-bottom:20px;">
     <div class="fourteen wide column">
+      <div class="ui error message" *ngIf="formError.length > 0">
+        <div class="header">Erreur</div>
+        <p *ngFor="let o of formError">• {{o}}</p>
+      </div>
+    </div>
+    <div class="fourteen wide column">
       <div class="ui placeholder segment">
         <div class="ui two column very relaxed stackable grid">
           <div class="column">
@@ -54,7 +60,7 @@
                 </div>
               </div>
               <div class="field">
-                <label>Mot de passe (4 caractères minimum)</label>
+                <label>Mot de passe (4 caractères min.)</label>
                 <div class="ui left icon input">
                   <input type="password" placeholder="Password" [(ngModel)]="form.Spw">
                   <i class="lock icon"></i>
