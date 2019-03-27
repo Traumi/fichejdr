@@ -1,5 +1,30 @@
 <ul>
   <li *ngFor="let l of list"><a [routerLink]="['/detail', l.id]">{{l.prenom}} {{l.nom}}</a></li>
-  <li><a (click)="addPerso()">+ Ajouter</a></li>
 </ul>
+<div class="ui centered grid" style="margin-top:20px;margin-bottom:20px;">
+  <div class="six wide column">
+    <h2 class="ui center aligned icon header">
+      <i class="circular plus icon"></i>
+      Ajouter
+    </h2>
+    <div class="ui form">
+      <div class="field">
+        <label>Prenom</label>
+        <div class="ui left icon input">
+          <input type="text" placeholder="Prenom" [(ngModel)]="new_perso.prenom">
+          <i class="user circle icon"></i>
+        </div>
+      </div>
+      <div class="field">
+        <label>Nom</label>
+        <div class="ui left icon input">
+          <input type="password" placeholder="Nom" [(ngModel)]="new_perso.nom">
+          <i class="user circle icon"></i>
+        </div>
+      </div>
+      <div class="ui blue submit button" (click)="addPerso()">Valider</div>
+    </div>
+  </div>
+</div>
+
 

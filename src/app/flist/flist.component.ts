@@ -9,6 +9,7 @@ import { FlistService } from '../flist.service';
 export class FlistComponent implements OnInit {
 
   list : any;
+  new_perso = {prenom : "", nom : ""};
 
   constructor(private _flistService : FlistService) { }
 
@@ -22,9 +23,10 @@ export class FlistComponent implements OnInit {
     });
   }
 
-  addPerso(){
-    this._flistService.addPerso().subscribe(res => {
-      this.list = res;
+  addPerso() : void{
+    if(this.new_perso.prenom.length < 1 && this.new_perso.nom.length < 1) return;
+    this._flistService.addPerso(this.new_perso.prenom, this.new_perso.nom).subscribe(res => {
+      this.getAllFiches();
     });
   }
 

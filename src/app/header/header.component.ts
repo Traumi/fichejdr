@@ -12,7 +12,7 @@ export class HeaderComponent implements OnInit {
 
   form = {login : "", pw : ""}
   session = {login : null, token : null}
-  loginForm : boolean = true;
+  subForm : boolean = false;
 
   constructor(private _flistService: FlistService, private _router: Router) { 
     

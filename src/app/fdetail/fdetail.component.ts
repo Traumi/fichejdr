@@ -60,13 +60,6 @@ export class FdetailComponent implements OnInit {
 
   goto(num : number) : void{
     this._flistService.getAllFiches().subscribe(res => {
-      if(num == -10){
-        num = res.length - 1;
-      }else if(num < 0){
-        num = 0;
-      }else if(num >= res.length){
-        num = res.length - 1;
-      }
       this._flistService.getFiche(num).subscribe(res => {
         this.perso.id = res.id;
         this.perso.prenom = res.prenom;
@@ -82,6 +75,28 @@ export class FdetailComponent implements OnInit {
       });
       this._router.navigate(['/detail/'+num]);
     });
+  }
+
+  goFirst() : void{
+    this._flistService.getAllFiches().subscribe(res => {
+      this.goto(res[0].id)
+    });
+  }
+
+  goLast() : void{
+    this._flistService.getAllFiches().subscribe(res => {
+      this.goto(res[res.length-1].id)
+    });
+  }
+
+  goNext() : void{
+    if(this.list[3] == null) return;
+    this.goto(this.list[3].id)
+  }
+
+  goPrevious() : void{
+    if(this.list[1] == null) return;
+    this.goto(this.list[1].id)
   }
 }
 /*import { ActivatedRoute } from '@angular/router';

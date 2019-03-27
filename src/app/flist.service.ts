@@ -21,8 +21,8 @@ export class FlistService {
     return this.http.get<any>(url);
   }
 
-  addPerso() : Observable<any>{
-    let url = 'http://localhost/jdr/add_perso.php';
+  addPerso(prenom : string, nom : string) : Observable<any>{
+    let url = 'http://localhost/jdr/add_perso.php?p='+prenom+'n='+nom;
     return this.http.get<any>(url);
   }
 
