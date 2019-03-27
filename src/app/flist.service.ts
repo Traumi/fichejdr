@@ -22,13 +22,13 @@ export class FlistService {
   }
 
   addPerso(prenom : string, nom : string) : Observable<any>{
-    let url = 'http://localhost/jdr/add_perso.php?p='+prenom+'n='+nom;
+    let url = 'http://localhost/jdr/add_perso.php?p='+prenom+'&n='+nom;
     return this.http.get<any>(url);
   }
 
   updateFiche(fiche: object) : Observable<any>{
     let url = 'http://localhost/jdr/update_fiche.php';
-    return this.http.put<any>(url, fiche);
+    return this.http.post<any>(url, fiche);
   }
 
   login(login: string, pw: string) : Observable<any>{

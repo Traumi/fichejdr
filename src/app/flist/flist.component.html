@@ -8,17 +8,17 @@
       Ajouter
     </h2>
     <div class="ui form">
-      <div class="field">
+      <div class="field" [ngClass]="{'error':is_error}">
         <label>Prenom</label>
         <div class="ui left icon input">
           <input type="text" placeholder="Prenom" [(ngModel)]="new_perso.prenom">
           <i class="user circle icon"></i>
         </div>
       </div>
-      <div class="field">
+      <div class="field" [ngClass]="{'error':is_error}">
         <label>Nom</label>
         <div class="ui left icon input">
-          <input type="password" placeholder="Nom" [(ngModel)]="new_perso.nom">
+          <input type="text" placeholder="Nom" [(ngModel)]="new_perso.nom">
           <i class="user circle icon"></i>
         </div>
       </div>
