@@ -26,8 +26,13 @@ export class FlistService {
     return this.http.get<any>(url);
   }
 
-  addPerso(prenom : string, nom : string) : Observable<any>{
-    let url = 'http://localhost/jdr/add_perso.php?p='+prenom+'&n='+nom;
+  addPerso(prenom : string, nom : string, createur: string) : Observable<any>{
+    let url = 'http://localhost/jdr/add_perso.php?p='+prenom+'&n='+nom+'&c='+createur;
+    return this.http.get<any>(url);
+  }
+
+  rmPerso(id : number, token : string) : Observable<any>{
+    let url = 'http://localhost/jdr/remove_perso.php?id='+id+'&token='+token;
     return this.http.get<any>(url);
   }
 

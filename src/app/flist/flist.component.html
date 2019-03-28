@@ -1,8 +1,29 @@
-<ul>
-  <li *ngFor="let l of list"><a [routerLink]="['/detail', l.id]">{{l.prenom}} {{l.nom}}</a></li>
-</ul>
+<!--<ul>
+  <li *ngFor="let l of list"><a [routerLink]="['/detail', l.id]">{{l.prenom}} {{l.nom}}</a> <button (click)="deletePerso()" *ngIf="admin == true">x</button></li>
+</ul>-->
 <div class="ui centered grid" style="margin-top:20px;margin-bottom:20px;">
-  <div class="six wide column">
+  <div class="eight wide column">
+    <div class="ui relaxed divided list">
+      <div class="item" *ngFor="let l of list">
+        <div class="right floated content">
+          <button class="ui red tiny button" (click)="deletePerso(l.id)" *ngIf="admin == true">x</button>
+        </div>
+        <i class="large user circle middle aligned icon"></i>
+        <div class="content">
+          <a class="header" [routerLink]="['/detail', l.id]">{{l.prenom}} {{l.nom}}</a>
+          <div class="description" *ngIf="l.creator">Créé par {{l.creator}}</div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>
+<div class="ui centered grid" style="margin-top:20px;margin-bottom:20px;">
+  <div class="eight wide column">
+    <div class="ui error message" *ngIf="formError.length > 0">
+      <div class="header">Erreur</div>
+      <p *ngFor="let o of formError">• {{o}}</p>
+    </div>
     <h2 class="ui center aligned icon header">
       <i class="circular plus icon"></i>
       Ajouter
