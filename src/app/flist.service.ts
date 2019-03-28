@@ -16,6 +16,11 @@ export class FlistService {
     return this.http.get<any>(url);
   }
 
+  getAllProfils() : Observable<any>{
+    let url = 'http://localhost/jdr/list_profils.php';
+    return this.http.get<any>(url);
+  }
+
   getEditableFiches() : Observable<any>{
     let url = 'http://localhost/jdr/editable_fiches.php?token='+this.getCookie("TOKEN");
     return this.http.get<any>(url);

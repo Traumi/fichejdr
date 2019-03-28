@@ -4,7 +4,7 @@
     <a class="item" (click)="displayLoginForm()" *ngIf="!session.token">Se connecter</a>
     <div class="right menu" *ngIf="session.token">
       <div class="item">{{session.login}}</div>
-      <!--<a class="item" [routerLink]="['/settings']"><i class="settings icon"></i></a>-->
+      <a class="item" [routerLink]="['/settings']"><i class="settings icon"></i></a>
       <a class="item" (click)="logout()">Déconnexion</a>
     </div>
   </nav>

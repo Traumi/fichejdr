@@ -21,7 +21,6 @@ export class FlistComponent implements OnInit {
   ngOnInit() {
     this.getAllFiches();
     this.isAdmin();
-    this.isAdmin();
     this.checkAdmin = setInterval(() => {
       this.isAdmin();
     }, 1250);
