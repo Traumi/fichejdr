@@ -14,6 +14,7 @@ import { CaracComponent } from './carac/carac.component';
 import { StuffComponent } from './stuff/stuff.component';
 import { CompComponent } from './comp/comp.component';
 import { GeneralComponent } from './general/general.component';
+import { SettingsComponent } from './settings/settings.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { GeneralComponent } from './general/general.component';
     CaracComponent,
     StuffComponent,
     CompComponent,
-    GeneralComponent
+    GeneralComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,
