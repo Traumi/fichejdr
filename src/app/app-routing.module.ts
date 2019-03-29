@@ -11,8 +11,7 @@ const routes: Routes = [
   { path: 'list', component: FlistComponent },
   { path: 'settings', component: SettingsComponent },
   { path: 'detail/:id', component: FdetailComponent },
-  { path: 'edit/:id', component: FeditComponent, canActivate: [EditGuard] },
-  {path: "aaa", loadChildren: "./modules/module#ModuleModule"}
+  { path: 'edit/:id', component: FeditComponent, canActivate: [EditGuard] }
 ];
 
 @NgModule({
