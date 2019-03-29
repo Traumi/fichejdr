@@ -1,36 +1,40 @@
 <div class="ui centered grid" style="margin-top:20px;margin-bottom:20px;">
-  <!--<div class="eight wide column">
+  <div class="nine wide column">
     <div class="ui form">
       <div class="field">
         <div class="ui toggle checkbox">
           <input type="checkbox" [(ngModel)]="night" (change)="changeNight()" name="public">
-          <label>Mode nuit</label>
+          <label><span class="text" [ngClass]='{"inverted" : (_nmService.night_mode == "true")}'>Mode nuit (béta)</span></label>
         </div>
       </div>
     </div>
-  </div>-->
-  <div class="eight wide column" *ngIf="!admin"><h1 class="ui center aligned icon header">Oust !</h1></div>
-  <div class="eight wide column" *ngIf="admin">
-    <h2>Administration</h2>
-    <div class="ui form">
-      <h3>Associer des fiches : </h3>
-      <div class="field" *ngFor="let p of persos">
-        <label>[{{p.id}}] : {{p.prenom}} {{p.nom}}</label>
-        <div class="ui centered grid">
-          <div class="fifteen wide column">
-            <select class="ui fluid dropdown">
-              <option value=""></option>
-              <option value="o.login" *ngFor="let o of accounts" [selected]="o.login == p.creator">{{(o.admin == 1) ? "[Admin] " : null}}{{o.login}}</option>
-            </select>
+  </div>
+  <div class="nine wide column" *ngIf="!admin"><h1 class="ui center aligned icon header">Oust !</h1></div>
+  <div class="nine wide column" *ngIf="admin">
+    <h2 class="ui header" [ngClass]='{"inverted" : (_nmService.night_mode == "true")}'>Administration</h2>
+    <div class="ui segment" [ngClass]='{"inverted" : (_nmService.night_mode == "true")}'>
+      <div class="ui success message" *ngIf="msgSuccess.length > 0">
+        <div class="header">Mise à jour</div>
+        <p *ngFor="let o of msgSuccess">• {{o}}</p>
+      </div>
+      <div class="ui form" [ngClass]='{"inverted" : (_nmService.night_mode == "true")}'>
+        <h3>Associer des fiches : </h3>
+        
+        <div class="field" *ngFor="let p of persos">
+          <label>[{{p.id}}] : {{p.prenom}} {{p.nom}}</label>
+          <div class="ui centered grid">
+            <div class="fourteen wide column">
+              <select class="ui fluid dropdown" [(ngModel)]="p.creator">
+                <option [ngValue]="null"></option>
+                <option [ngValue]="o.login" *ngFor="let o of accounts">{{(o.admin == 1) ? "[Admin] " : null}}{{o.login}}</option>
+              </select>
+            </div>
+            <div class="two wide column">
+              <button class="ui blue button" [ngClass]='{"inverted" : (_nmService.night_mode == "true")}' (click)="updateCreator(p.id, p.creator)"><i style="margin:0;" class="ui check icon"></i></button>
+            </div>
           </div>
-          <div class="one wide column">
-            <button class="ui button"><i class="ui check icon"></i></button>
-          </div>
-          
-          
         </div>
       </div>
     </div>
-    <button>Valider</button>
   </div>
 </div>

@@ -2,7 +2,7 @@
 
 <div class="ui centered grid" *ngIf="perso">
   <section class="fourteen wide column" *ngIf="list">
-    <div class="ui fluid nine item menu">
+    <div class="ui fluid nine item menu" [ngClass]='{"inverted" : (_nmService.night_mode == "true")}'>
       <a class="item" (click)="goFirst()"><i class="angle double left icon"></i></a>
       <a class="item" (click)="goPrevious()"><i class="angle left icon"></i></a>
       <a class="item" *ngFor="let o of list" (click)="o ? goto(o.id) : null" [ngClass]="{'active': o ? o.id == perso.id : false}">
@@ -14,35 +14,35 @@
     </div>
   </section>
   <section class="fourteen wide column">
-    <div class="ui inverted segments">
-      <div class="ui center aligned segment">
+    <div class="ui segments" [ngClass]='{"inverted" : (_nmService.night_mode == "true")}'>
+      <div class="ui center aligned segment" [ngClass]='{"inverted" : (_nmService.night_mode == "true")}' [ngStyle]='{"border-top" : (_nmService.night_mode == "true")?"solid white 1px":"none"}'>
           <h3>Fiche de {{perso.prenom}} {{perso.nom}}</h3>
-          <div class="ui center aligned segment">
+          <div class="ui center aligned segment" [ngClass]='{"inverted" : (_nmService.night_mode == "true")}'>
             <!--Général-->
             <app-general [viewonly]="true" [perso]="perso"></app-general>
           </div>
-          <div class="ui center aligned segment">
+          <div class="ui center aligned segment" [ngClass]='{"inverted" : (_nmService.night_mode == "true")}'>
             <h5>Attributs</h5>
-            <div class="ui horizontal segments">
-              <div class="ui segment">
+            <div class="ui horizontal segments" [ngClass]='{"inverted" : (_nmService.night_mode == "true")}'>
+              <div class="ui segment" [ngClass]='{"black inverted" : (_nmService.night_mode == "true")}'>
                 <!--Statistiques-->
                 <app-stats [viewonly]="true" [bars]="perso.bars"></app-stats>
               </div>
-              <div class="ui segment">
+              <div class="ui segment" [ngClass]='{"black inverted" : (_nmService.night_mode == "true")}'>
                 <!--Caractéristiques-->
                 <app-carac [viewonly]="true" [stats]="perso.stats"></app-carac>
               </div>
             </div>
           </div>
-          <div class="ui center aligned segment">
+          <div class="ui center aligned segment" [ngClass]='{"inverted" : (_nmService.night_mode == "true")}'>
             <!--Equipement-->
             <app-stuff [viewonly]="true" [stuff]="perso.stuff" [armures]="perso.armures" [objets]="perso.objets"></app-stuff>
           </div>
-          <div class="ui center aligned segment">
+          <div class="ui center aligned segment" [ngClass]='{"inverted" : (_nmService.night_mode == "true")}'>
             <!--Compétences-->
             <app-comp [viewonly]="true" [competences]="perso.competences"></app-comp>
           </div>
-          <button [routerLink]="['/edit', perso.id]" class="ui primary button" *ngIf="isAdmin">Edit</button>
+          <button [routerLink]="['/edit', perso.id]" class="ui primary button" [ngClass]='{"inverted" : (_nmService.night_mode == "true")}' *ngIf="isAdmin">Edit</button>
       </div>
     </div>
   </section>

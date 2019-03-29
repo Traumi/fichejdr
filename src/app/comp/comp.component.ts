@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { NightModeService } from '../night-mode.service';
 
 @Component({
   selector: 'app-comp',
@@ -11,9 +12,10 @@ export class CompComponent implements OnInit {
   @Input() viewonly : boolean;
   newcomp = {nom : null, cout : null, effet : null}
 
-  constructor() { }
+  constructor(private _nmService : NightModeService) { }
 
   ngOnInit() {
+    this._nmService.init();
   }
 
   addComp() : void{

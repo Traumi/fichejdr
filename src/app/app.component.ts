@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NightModeService } from './night-mode.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'fichejdr';
+  night_mode = false;
+
+  constructor(private _nmService : NightModeService ) { this._nmService.init() }
 }

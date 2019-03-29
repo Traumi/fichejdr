@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { NightModeService } from '../night-mode.service';
 
 @Component({
   selector: 'app-stuff',
@@ -15,9 +16,10 @@ export class StuffComponent implements OnInit {
   newarmure = {nom : null, effet : null, nombre : null};
   newobj = {nom : null, effet : null, nombre : null};
 
-  constructor() { }
+  constructor(private _nmService : NightModeService) { }
 
   ngOnInit() {
+    this._nmService.init();
   }
 
   addItem() : void{

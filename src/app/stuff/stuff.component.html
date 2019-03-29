@@ -135,26 +135,26 @@
 
 <span *ngIf="viewonly">
   <h5>Équipements</h5>
-  <table class="ui celled teal table">
+  <table class="ui celled table" [ngClass]='{"inverted" : (_nmService.night_mode == "true"), "teal" : (_nmService.night_mode == "false")}'>
     <thead>
       <tr><th>Nom</th>
       <th>Effet</th>
       <th>Nombre</th>
     </tr></thead>
     <tbody>
-      <tr class="positive"><td class="ui center aligned" colspan="3">Armes</td></tr>
+      <tr class="positive" [ngClass]='{"inverted" : (_nmService.night_mode == "true")}'><td class="ui center aligned" colspan="3">Armes</td></tr>
       <tr *ngFor="let o of stuff">
         <td data-label="Nom">{{o.nom}}</td>
         <td data-label="Effet">{{o.effet}}</td>
         <td data-label="Nombre">{{o.nombre}}</td>
       </tr>
-      <tr class="positive"><td class="ui center aligned" colspan="3">Armures</td></tr>
+      <tr class="positive" [ngClass]='{"inverted" : (_nmService.night_mode == "true")}'><td class="ui center aligned" colspan="3">Armures</td></tr>
       <tr *ngFor="let o of armures">
         <td data-label="Nom">{{o.nom}}</td>
         <td data-label="Effet">{{o.effet}}</td>
         <td data-label="Nombre">{{o.nombre}}</td>
       </tr>
-      <tr class="positive"><td class="ui center aligned" colspan="3">Objets</td></tr>
+      <tr class="positive" [ngClass]='{"inverted" : (_nmService.night_mode == "true")}'><td class="ui center aligned" colspan="3">Objets</td></tr>
       <tr *ngFor="let o of objets">
         <td data-label="Nom">{{o.nom}}</td>
         <td data-label="Effet">{{o.effet}}</td>

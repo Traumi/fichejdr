@@ -40,7 +40,7 @@
 
 <span *ngIf="viewonly">
   <p>Caractéristiques</p>
-  <table class="ui celled teal table">
+  <table class="ui celled table" [ngClass]='{"inverted" : (_nmService.night_mode == "true"), "teal" : (_nmService.night_mode == "false")}'>
     <tbody>
       <tr *ngFor="let o of stats">
         <td data-label="Nom">{{o.nom}}</td>

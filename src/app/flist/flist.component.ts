@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FlistService } from '../flist.service';
 import { HeaderComponent } from '../header/header.component';
 import { Observable } from 'rxjs';
+import { NightModeService } from '../night-mode.service';
 
 @Component({
   selector: 'app-flist',
@@ -16,9 +17,11 @@ export class FlistComponent implements OnInit {
   admin = false;
   checkAdmin;
 
-  constructor(private _flistService : FlistService) { }
+  constructor(private _flistService : FlistService, private _nmService : NightModeService) { }
 
   ngOnInit() {
+    this._nmService.init();
+
     this.getAllFiches();
     this.isAdmin();
     this.checkAdmin = setInterval(() => {
@@ -69,18 +72,18 @@ export class FlistComponent implements OnInit {
         this.formError.push("Vous devez renseigner le prénom du personnage");
       }
   
-      for(let i = 0 ; i < this.list.length ; ++i){
+      /*for(let i = 0 ; i < this.list.length ; ++i){
         if(this.list[i].nom.toLowerCase().trim() == this.new_perso.nom.toLowerCase().trim() && this.list[i].prenom.toLowerCase().trim() == this.new_perso.prenom.toLowerCase().trim()){
           this.formError.push("Ce personnage existe déjà");
         } 
-      }
-
+      }*/
+      
       if(this.formError.length > 0) return;
-  
       this._flistService.addPerso(this.new_perso.prenom, this.new_perso.nom, this._flistService.getCookie("TOKEN")).subscribe(res => {
         this.getAllFiches();
         this.new_perso.prenom = "";
         this.new_perso.nom = "";
+        
       });
     })
   }

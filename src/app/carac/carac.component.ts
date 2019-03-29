@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { NightModeService } from '../night-mode.service';
 
 @Component({
   selector: 'app-carac',
@@ -11,9 +12,10 @@ export class CaracComponent implements OnInit {
   @Input() viewonly : boolean;
   newstat = {nom : null, val : null};
 
-  constructor() { }
+  constructor(private _nmService : NightModeService) { }
 
   ngOnInit() {
+    this._nmService.init();
   }
 
   addStat() : void{

@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { NightModeService } from '../night-mode.service';
 
 @Component({
   selector: 'app-stats',
@@ -11,10 +12,10 @@ export class StatsComponent implements OnInit {
   @Input() viewonly : boolean;
   newbar = {nom : null, val : null};
 
-  constructor() { }
+  constructor(private _nmService : NightModeService) { }
 
   ngOnInit() {
-    
+    this._nmService.init();
   }
 
   addBar() : void{

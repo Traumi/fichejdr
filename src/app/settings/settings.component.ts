@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FlistService } from '../flist.service';
+import { NightModeService } from '../night-mode.service';
 
 @Component({
   selector: 'app-settings',
@@ -14,9 +15,11 @@ export class SettingsComponent implements OnInit {
   admin = false;
   checkAdmin;
 
-  constructor(private _flistService : FlistService ) { }
+  constructor(private _flistService : FlistService, private _nmService : NightModeService ) { }
 
   ngOnInit() {
+    this._nmService.init();
+
     this.night = false;
     if(this._flistService.getCookie("NIGHT") == "true") this.night = true;
 
@@ -55,7 +58,17 @@ export class SettingsComponent implements OnInit {
   }
 
   changeNight() : void{
+    console.log(this.night)
     this._flistService.setCookie("NIGHT", this.night, 7);
+    this._nmService.init();
+  }
+
+  msgSuccess = [];
+  updateCreator(id : number, crea : string) : void{
+    this.msgSuccess = [];
+    this._flistService.updateFicheCreator(id,crea,this._flistService.getCookie("TOKEN")).subscribe(res => {
+      if(res.success) this.msgSuccess.push(res.success);
+    });
   }
 
 }

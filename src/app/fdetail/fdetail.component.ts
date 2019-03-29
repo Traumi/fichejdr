@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FlistService } from '../flist.service';
 import { Fiche } from '../fiche';
+import { NightModeService } from '../night-mode.service';
 
 @Component({
   selector: 'app-fdetail',
@@ -14,11 +15,13 @@ export class FdetailComponent implements OnInit {
   list : any;
   isAdmin = false;
 
-  constructor(private _activatedRoute: ActivatedRoute, private _router: Router, private _flistService : FlistService) {
+  constructor(private _activatedRoute: ActivatedRoute, private _router: Router, private _flistService : FlistService, private _nmService : NightModeService) {
     this.perso = new Fiche();
   }
 
   ngOnInit() {
+    this._nmService.init();
+
     const id = +this._activatedRoute.snapshot.paramMap.get('id');
     
     this.checkAdmin(id);

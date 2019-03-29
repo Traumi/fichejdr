@@ -3,34 +3,34 @@
 </ul>-->
 <div class="ui centered grid" style="margin-top:20px;margin-bottom:20px;">
   <div class="eight wide column">
-    <div class="ui relaxed divided list">
+    <div class="ui relaxed divided list" [ngClass]='{"inverted" : (_nmService.night_mode == "true")}'>
       <div class="item" *ngFor="let l of list">
         <div class="right floated content">
-          <button class="ui red tiny button" (click)="deletePerso(l.id)" *ngIf="admin == true">x</button>
+          <button class="ui red tiny button" [ngClass]='{"inverted" : (_nmService.night_mode == "true")}' (click)="deletePerso(l.id)" *ngIf="admin == true">x</button>
         </div>
-        <i class="large user circle middle aligned icon"></i>
+        <i class="large user circle middle aligned icon" [ngClass]='{"text inverted" : (_nmService.night_mode == "true")}'></i>
         <div class="content">
           <a class="header" [routerLink]="['/detail', l.id]">{{l.prenom}} {{l.nom}}</a>
-          <div class="description" *ngIf="l.creator">Créé par {{l.creator}}</div>
+          <div class="description" *ngIf="l.creator && l.creator != 'null'">Créé par {{l.creator}}</div>
         </div>
       </div>
       
     </div>
   </div>
 </div>
-<div class="ui centered grid" style="margin-top:20px;margin-bottom:20px;">
+<div class="ui centered grid" style="margin-top:20px;margin-bottom:20px;" *ngIf="admin">
   <div class="eight wide column">
     <div class="ui error message" *ngIf="formError.length > 0">
       <div class="header">Erreur</div>
       <p *ngFor="let o of formError">• {{o}}</p>
     </div>
-    <h2 class="ui center aligned icon header">
-      <i class="circular plus icon"></i>
+    <h2 class="ui center aligned icon header" [ngClass]='{"inverted" : (_nmService.night_mode == "true")}'>
+      <i class="circular plus icon" [ngStyle]='{"box-shadow" : (_nmService.night_mode == "true") ? "0 0 0 0.1em rgba(255,255,255,.5) inset" : ""}'></i>
       Ajouter
     </h2>
-    <div class="ui form">
+    <div class="ui form" [ngClass]='{"inverted" : (_nmService.night_mode == "true")}'>
       <div class="field" [ngClass]="{'error':is_error}">
-        <label>Prenom</label>
+        <label>Prénom</label>
         <div class="ui left icon input">
           <input type="text" placeholder="Prenom" [(ngModel)]="new_perso.prenom">
           <i class="user circle icon"></i>
@@ -43,9 +43,7 @@
           <i class="user circle icon"></i>
         </div>
       </div>
-      <div class="ui blue submit button" (click)="addPerso()">Valider</div>
+      <div class="ui blue submit button" [ngClass]='{"inverted" : (_nmService.night_mode == "true")}' (click)="addPerso()">Valider</div>
     </div>
   </div>
 </div>
-
-

@@ -46,6 +46,11 @@ export class FlistService {
     return this.http.put<any>(url, fiche);
   }
 
+  updateFicheCreator(id : number, crea : string, token : string) : Observable<any>{
+    let url = 'http://localhost/jdr/update_creator.php?id='+id+'&new='+crea+'&token='+token;
+    return this.http.get<any>(url);
+  }
+
   login(login: string, pw: string) : Observable<any>{
     let url = 'http://localhost/jdr/login.php?login='+login+'&pw='+pw;
     return this.http.get<any>(url);
